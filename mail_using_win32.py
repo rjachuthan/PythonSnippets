@@ -19,6 +19,6 @@ MAIL.HTMLBody = ("<html>"
                  "Something Something"
                  "</body>"
                  "</html>")
-MAIL.BodyFormal = 2
+MAIL.BodyFormat = 2
 MAIL.Attachments.Add(PATH_TO_ATTACHMENT)
 MAIL.Send()
