@@ -18,7 +18,7 @@ def init_logger(filename):
     formatter = logging.Formatter(text_format)
 
     logger = logging.getLogger(name="myLogger")
-    logger.setLeve(logging.NOTSET)
+    logger.setLevel(logging.NOTSET)
 
     streamHandler = logging.StreamHandler(sys.stdout)
     streamHandler.setLevel(logging.WARNING)

@@ -98,5 +98,12 @@ def get_folder_list(website, site, library, relpath, username, password):
         fullpath = file["FileRef"]
         if (fullpath.startswith(relpath)) & (fullpath != relpath):
             output_list.append(file["FileRef"])
+    # NEW ADDITIONS:
+    # relpath = (f"{site}/Shared Documents/RPA_Templates/I&A Projects/NAMETRUB/RUB"
+    #            f"/Volume Report/{previous_qtrnm}")
+    # r = ses.get(f"{website}/{site}/{api_call}('/{relpath}')/Files")
+    # data = r.json()
+    # file_date = [(elm['Name'], elm["TimeCreated"])for elm in data["d"]["results"]]
+    # df_files = pd.DataFrame(file_date, columns=["File_name", "Created_date"])
 
     return output_list
