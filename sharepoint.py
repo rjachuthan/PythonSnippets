@@ -33,8 +33,7 @@ def file_download(website, splink, username, password, filepath):
     sess.close()
 
 
-def file_upload(website, site, relpath, filename, inputfile, username,
-                password):
+def file_upload(website, site, relpath, filename, inputfile, username, password):
     """
     Function to upload single file from local machine to Sharepoint
         param website (str) : Sharepoint link. Eg, https://abc.sharepoint.com
@@ -47,15 +46,19 @@ def file_upload(website, site, relpath, filename, inputfile, username,
     """
     sess = sharepy.connect(site=website, username=username, password=password)
 
-    headers = {"accept": "application/json;odata=verbose",
-               "content-type": "application/x-www-urlencoded; charset=UTF-8"}
+    headers = {
+        "accept": "application/json;odata=verbose",
+        "content-type": "application/x-www-urlencoded; charset=UTF-8",
+    }
 
     with open(inputfile, "rb") as read_file:
         content = read_file.read()
 
     # Upload link
-    uploadpath = (f"{website}/{site}/_api/web/GetFolderByServerRelativeUrl"
-                  f"('/{relpath}')/Files/add(url='{filename}',overwrite=true)")
+    uploadpath = (
+        f"{website}/{site}/_api/web/GetFolderByServerRelativeUrl"
+        f"('/{relpath}')/Files/add(url='{filename}',overwrite=true)"
+    )
 
     sess.post(uploadpath, data=content, headers=headers)
     sess.close()
@@ -81,9 +84,11 @@ def get_folder_list(website, site, library, relpath, username, password):
     condt = True
     fileid = ""
     while condt:
-        link = (f"{site}/_api/web/lists/getbytitle('{library}')/items"
-                f"?$select=FileLeafRef,FileRef,Id&top={5000}&%24"
-                f"skiptoken=Paged%3DTRUE%26p_ID%{fileid}")
+        link = (
+            f"{site}/_api/web/lists/getbytitle('{library}')/items"
+            f"?$select=FileLeafRef,FileRef,Id&top={5000}&%24"
+            f"skiptoken=Paged%3DTRUE%26p_ID%{fileid}"
+        )
         files = sess.get(link).json()["d"]["results"]
         list1 = list1 + files
         # Get the ID of the last element in the list
