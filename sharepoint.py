@@ -38,7 +38,7 @@ def file_upload(website, site, relpath, filename, inputfile, username, password)
     Function to upload single file from local machine to Sharepoint
         param website (str) : Sharepoint link. Eg, https://abc.sharepoint.com
         param site (str) : Sharepoint site/teams names, Eg site/myfolder
-        param relpath (str) : Relative path to upload folder in Sharepoint
+    :   param relpath (str) : Relative path to upload folder in Sharepoint
         param filename (str) : Filename of the upload
         param inputfile (str) : File path and extension of the file to uploaded
         param username (str) : Username to login to Sharepoint
