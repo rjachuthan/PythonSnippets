@@ -38,7 +38,7 @@ def file_upload(website, site, relpath, filename, inputfile, username, password)
     Function to upload single file from local machine to Sharepoint
         param website (str) : Sharepoint link. Eg, https://abc.sharepoint.com
         param site (str) : Sharepoint site/teams names, Eg site/myfolder
-    :   param relpath (str) : Relative path to upload folder in Sharepoint
+        param relpath (str) : Relative path to upload folder in Sharepoint
         param filename (str) : Filename of the upload
         param inputfile (str) : File path and extension of the file to uploaded
         param username (str) : Username to login to Sharepoint
@@ -103,7 +103,8 @@ def get_folder_list(website, site, library, relpath, username, password):
         fullpath = file["FileRef"]
         if (fullpath.startswith(relpath)) & (fullpath != relpath):
             output_list.append(file["FileRef"])
-    # NEW ADDITIONS:
+
+    # DEPRECATED:
     # relpath = (f"{site}/Shared Documents/RPA_Templates/I&A Projects/NAMETRUB/RUB"
     #            f"/Volume Report/{previous_qtrnm}")
     # r = ses.get(f"{website}/{site}/{api_call}('/{relpath}')/Files")
