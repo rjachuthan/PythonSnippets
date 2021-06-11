@@ -6,7 +6,7 @@ three functions:
     - file_download() - to download single file from sharepoint
     - file_upload() - to upload single file to Sharepoint
     - get_folder_list() - to get list of all the files present in Sharepoint
-    - TODO: create_folder()
+    - :TODO: create_folder()
 """
 
 import sharepy
