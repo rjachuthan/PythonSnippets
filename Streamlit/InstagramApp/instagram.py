@@ -14,7 +14,7 @@ from datetime import datetime
 st.title("Instagram Dashboard")
 
 with st.form(key="my_form"):
-    username = st.text_input(label="Enter User Name:")
+    username = st.text_input(label="Enter User Name:", value="billybonaros")
     submit_button = st.form_submit_button(label="Submit")
 
 if submit_button:
@@ -33,7 +33,7 @@ if submit_button:
     df["date"] = df["taken_at_timestamp"].apply(datetime.fromtimestamp)
     df["dayofweek"] = df["date"].dt.dayofweek
     df["month"] = df["date"].dt.month
-    df["week"] = df["date"].dt.week
+    df["week"] = df["date"].dt.isocalendar().week
     df["year"] = df["date"].dt.year
     df["ym"] = df["year"].astype(str) + df["month"].astype(str)
     df["dayofweek"] = df["dayofweek"].replace([0, 1, 2, 3, 4, 5, 6], ["Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat.", "Sun."])
@@ -59,12 +59,14 @@ if submit_button:
     col2.write(f"Engagement Rate: {round(engagement_rate, 2)}%")
 
     x = df.groupby("dayofweek").size()
+    dfdata = pd.DataFrame(x).rename(columns={0: "Number of Posts"})
     st.subheader("Number of Posts Per Week-Day")
-    st.bar_chart(pd.DataFrame(x).rename(columns={0: "Number of Posts"}))
+    st.bar_chart(data=dfdata, use_container_width=True)
 
     x = df.groupby("month").size()
+    dfdata = pd.DataFrame(x).rename(columns={0: "Number of Posts"})
     st.subheader("Number of Posts Per Month")
-    st.bar_chart(pd.DataFrame(x).rename(columns={0: "Number of Posts"}))
+    st.bar_chart(data=dfdata, use_container_width=True)
 
     def get_caption(x):
         try:
