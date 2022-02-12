@@ -6,7 +6,7 @@ three functions:
     - file_download() - to download single file from sharepoint
     - file_upload() - to upload single file to Sharepoint
     - get_folder_list() - to get list of all the files present in Sharepoint
-    - :TODO: create_folder()
+    - TODO: create_folder()
 """
 
 import sharepy
@@ -98,7 +98,7 @@ def get_folder_list(website, site, library, relpath, username, password):
         if len(files) != 5000:
             condt = False
 
-    output_list = []
+    output_list: list = []
     for file in list1:
         fullpath = file["FileRef"]
         if (fullpath.startswith(relpath)) & (fullpath != relpath):
